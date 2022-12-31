@@ -18,55 +18,55 @@ import database as db
 
 
 # --- AUTENTICAÇÃO DO USUÁRIO ---
-# users = db.fetch_all_users()
-# usernames = [user["key"] for user in users]
-# names = [user["name"] for user in users]
-# hashed_passwds = [user["password"] for user in users]
-# credentials = {
-#     "usernames":{
-#         usernames[0]:{
-#             "name":names[0],
-#             "password":hashed_passwds[0]
-#             },
-#         usernames[1]:{
-#             "name":names[1],
-#             "password":hashed_passwds[1]
-#             },
-#         usernames[2]:{
-#             "name":names[2],
-#             "password":hashed_passwds[2]
-#             },
-#         }
-#     }
-# #                                                                       # coockie name, ass.do coockie, tempo_de_expiracao_do_coockie
-# authenticator = stauth.Authenticate(credentials, 'sales', 'abcdef', cookie_expiry_days=30)
+users = db.fetch_all_users()
+usernames = [user["key"] for user in users]
+names = [user["name"] for user in users]
+hashed_passwds = [user["password"] for user in users]
+credentials = {
+    "usernames":{
+        usernames[0]:{
+            "name":names[0],
+            "password":hashed_passwds[0]
+            },
+        usernames[1]:{
+            "name":names[1],
+            "password":hashed_passwds[1]
+            },
+        usernames[2]:{
+            "name":names[2],
+            "password":hashed_passwds[2]
+            },
+        }
+    }
+#                                                                       # coockie name, ass.do coockie, tempo_de_expiracao_do_coockie
+authenticator = stauth.Authenticate(credentials, 'sales', 'abcdef', cookie_expiry_days=30)
 
-# name, authentication_status, username = authenticator.login('Login', 'main')
+name, authentication_status, username = authenticator.login('Login', 'main')
 
-# print(credentials)
-# print(authentication_status)
-# if authentication_status:
-#     authenticator.logout('Logout', 'main')
-#     st.write(f'Welcome *{name}*')
-#     st.title('Some content')
-# elif authentication_status == False:
-#     st.error('Username/password is incorrect')
-# elif authentication_status == None:
-#     st.warning('Please enter your username and password')
+print(credentials)
+print(authentication_status)
+if authentication_status:
+    authenticator.logout('Logout', 'main')
+    st.write(f'Welcome *{name}*')
+    st.title('Some content')
+elif authentication_status == False:
+    st.error('Username/password is incorrect')
+elif authentication_status == None:
+    st.warning('Please enter your username and password')
 
 
-# parsed_toml = toml.load('autenticator.toml', )
-# print(parsed_toml)
-# autenticado = False
-# if parsed_toml['autenticator']['isautenticator'] == False:
-#     st.title('Autenticação')
-#     user_inp = st.text_input('Usuário:')
-#     passwd_inp = st.text_input('Senha:', type='password')
-#     if st.button('Autenticar...'):
-#         if user_inp == 'user' and passwd_inp == 'senha':
-#             autenticado = True
-# else:
-# container = st.container()
+parsed_toml = toml.load('autenticator.toml', )
+print(parsed_toml)
+autenticado = False
+if parsed_toml['autenticator']['isautenticator'] == False:
+    st.title('Autenticação')
+    user_inp = st.text_input('Usuário:')
+    passwd_inp = st.text_input('Senha:', type='password')
+    if st.button('Autenticar...'):
+        if user_inp == 'user' and passwd_inp == 'senha':
+            autenticado = True
+else:
+container = st.container()
 
 VERSION_APP = '1.0.1'
 st.markdown('# Extração de Filmes do <a href="https://www.imdb.com/chart/top/?ref_=nv_mv_250">IMDb</a>', True)
