@@ -43,7 +43,10 @@ try:
                 "name":names[0],
                 "password":hashed_passwds[0]
                 },
-
+            usernames[1]:{
+                "name":names[1],
+                "password":hashed_passwds[1]
+                },
             }
         }
 except Exception as e:
@@ -53,7 +56,7 @@ except Exception as e:
 authenticator = stauth.Authenticate(credentials, 'sales', 'abcdef', cookie_expiry_days=30)
 
 name, authentication_status, username = authenticator.login('Login', 'main')
-
+print(name, authentication_status, username)
 
 if authentication_status:  # se as credenciais baterem...
     if page == 'Fazer Logout/Login':
